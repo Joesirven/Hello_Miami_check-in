@@ -1,7 +1,7 @@
 # main.py
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from api.routers import contacts, interactions, messages, blasts
+from api.routers import contacts, interactions, messages, blasts, check_in
 from api.lifespan import lifespan
 from api.db.database import db
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -31,16 +31,31 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(contacts.router, prefix="/contacts", tags=["contacts"])
-app.include_router(interactions.router,
-                   prefix="/interactions",
-                   tags=["interactions"])
-app.include_router(messages.router,
-                   prefix="/messages",
-                   tags=["messages"])
-app.include_router(blasts.router,
-                   prefix="/blasts",
-                   tags=["blasts"])
+app.include_router(
+    contacts.router,
+    prefix="/contacts",
+    tags=["contacts"]
+)
+app.include_router(
+    interactions.router,
+    prefix="/interactions",
+    tags=["interactions"]
+)
+app.include_router(
+    messages.router,
+    prefix="/messages",
+    tags=["messages"]
+)
+app.include_router(
+    blasts.router,
+    prefix="/blasts",
+    tags=["blasts"]
+)
+app.include_router(
+    check_in.router,
+    prefix="/check-in",
+    tags=["check-in"]
+)
 
 
 @app.get("/")

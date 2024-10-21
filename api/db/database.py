@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import (
     AsyncSession,
     AsyncConnection,
 )
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import text
 from dotenv import load_dotenv
@@ -13,6 +13,7 @@ import asyncio
 from typing import AsyncGenerator
 from contextlib import asynccontextmanager
 import ssl
+from sqlmodel import SQLModel
 
 
 load_dotenv()
@@ -22,7 +23,7 @@ logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 # Create a Base class for declarative models
-Base = declarative_base()
+Base = SQLModel
 
 # Get database credentials from environment variables
 PASSWORD = os.environ.get("SUPABASE_PASSWORD")

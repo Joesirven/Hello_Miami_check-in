@@ -31,7 +31,7 @@ class BaseEmail:
 
     def set_send_at(self, send_time: datetime):
         current_time = datetime.now()
-        max_delay = current_time + timedelta(hours=72)
+        max_delay = current_time + timedelta(hours=144)
 
         if send_time < current_time or send_time > max_delay:
             raise ValueError("Send time is out of allowed range")
